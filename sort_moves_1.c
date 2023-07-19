@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_moves.c                                       :+:      :+:    :+:   */
+/*   sort_moves_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:16:18 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/18 20:27:04 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/19 22:58:17 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ void	pa(t_stack *sa)
 
 	if (!sa->b_size)
 		return ;
-	if (!sa->a_size++)
+	if (!sa->a_size)
 	{
 		new = (t_list *)malloc(sizeof(t_list));
 		new->data = sa->head_b->data;
 		new->next = new;
 		new->pre = new;
 		sa->head_a = new;
+		sa->head_a++;
 		delete_head_b(sa);
 		return ;
 	}
@@ -87,13 +88,14 @@ void	pb(t_stack *sa)
 
 	if (!sa->a_size)
 		return ;
-	if (!sa->b_size++)
+	if (!sa->b_size)
 	{
 		new = (t_list *)malloc(sizeof(t_list));
 		new->data = sa->head_a->data;
 		new->next = new;
 		new->pre = new;
 		sa->head_b = new;
+		sa->b_size++;
 		delete_head_a(sa);
 		return ;
 	}

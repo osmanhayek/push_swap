@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:33:02 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/18 19:30:25 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/19 14:26:48 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,47 @@ void	display(t_stack *sa)
 {
 	t_list	*last;
 
-	last = sa->head_b;
+	last = sa->head_a;
 	while (1)
 	{
 		printf("%d ", last->data);
 		fflush(stdout);
 		last = last->next;
-		if (last == sa->head_b)
+		if (last == sa->head_a)
 			break ;
 	}
+}
+
+int	ft_is_sorted(t_stack *s)
+{
+	t_list	*temp;
+
+	if (s->a_size <= 1)
+		return (1);
+	temp = s->head_a;
+	while (temp->next != s->head_a)
+	{
+		if (temp->data > temp->next->data)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
+
+t_list	*find_higest(t_list *head)
+{
+	t_list	*max;
+	t_list	*temp;
+
+	max = head;
+	temp = head;
+	while (1)
+	{
+		if (temp->data > max->data)
+			max = temp;
+		temp = temp->next;
+		if (temp == head)
+			break ;
+	}
+	return (max);
 }

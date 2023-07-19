@@ -1,47 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 12:21:15 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/19 13:48:31 by ohayek           ###   ########.fr       */
+/*   Created: 2023/06/20 22:15:18 by ohayek            #+#    #+#             */
+/*   Updated: 2023/06/20 22:15:18 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_split(char **numbers)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int	r;
 
-	if (!numbers)
-		return ;
-	i = 0;
-	while (numbers[i])
+	r = 0;
+	while (lst != NULL)
 	{
-		free(numbers[i]);
-		i++;
+		lst = lst->next;
+		r++;
 	}
-	free(numbers);
-}
-
-void	ft_free_init(t_stack *s)
-{
-	t_list	*temp;
-	t_list	*next_node;
-
-	temp = s->head_a;
-	while (1)
-	{
-		next_node = temp->next;
-		free(temp);
-		temp = next_node;
-		if (temp == s->head_a)
-			break ;
-	}
-	s->a_size = 0;
-	s->head_a = NULL;
-	exit(0);
+	return (r);
 }

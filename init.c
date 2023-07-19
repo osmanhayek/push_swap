@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:39:51 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/18 19:31:01 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/19 14:16:08 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,71 @@ void	ft_tab_init(int ac, char **av, int *tab)
 	}
 }
 
+void	ft_init_sort(t_stack *s)
+{
+	int		i;
+	int		j;
+	int		temp;
+
+	i = 0;
+	while (i < s->a_size)
+	{
+		j = i + 1;
+		while (j < s->a_size)
+		{
+			if (s->sorted[i] > s->sorted[j])
+			{
+				temp = s->sorted[i];
+				s->sorted[i] = s->sorted[j];
+				s->sorted[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_init_sorted(t_stack *s)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 0;
+	s->sorted = (int *)malloc(sizeof(int) * s->a_size);
+	tmp = s->head_a;
+	while (1)
+	{
+		s->sorted[i++] = tmp->data;
+		tmp = tmp->next;
+		if (tmp == s->head_a)
+			break ;
+	}
+}
+
+void	ft_init_index(t_stack *s)
+{
+	int		i;
+	t_list	*temp;
+
+	temp = s->head_a;
+	while (1)
+	{
+		i = 0;
+		while (i < s->a_size)
+		{
+			if (temp->data == s->sorted[i])
+			{
+				temp->data = i;
+				break ;
+			}
+			i++;
+		}
+		temp = temp->next;
+		if (temp == s->head_a)
+			break ;
+	}
+}
+
 void	ft_stack_init(t_stack *s, int ac, char **av)
 {
 	int		i;
@@ -52,4 +117,9 @@ void	ft_stack_init(t_stack *s, int ac, char **av)
 		free_split(numbers);
 		i++;
 	}
+	if (ft_is_sorted(s))
+		ft_free_init(s);
+	ft_init_sorted(s);
+	ft_init_sort(s);
+	ft_init_index(s);
 }
