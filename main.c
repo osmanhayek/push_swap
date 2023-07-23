@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:06:56 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/19 23:19:26 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:01:50 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,4 @@ int	main(int ac, char **av)
 	else
 		radix_sort(&sa);
 	ft_deallocate(&sa);
-	system("leaks a.out");
 }

@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:02:45 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/19 20:01:06 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/20 16:07:04 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@
 
 typedef struct s_list
 {
-	int				steps;
 	int				data;
 	struct s_list	*next;
 	struct s_list	*pre;
 }t_list;
-
-//head_a its also the top of the stack a
 
 typedef struct s_stack
 {
@@ -45,7 +42,6 @@ void	free_split(char **numbers);
 void	ft_tab_init(int ac, char **av, int *tab);
 void	ft_stack_init(t_stack *sa, int ac, char **av);
 void	ft_push_back(t_stack *sa, char *number);
-void	display(t_stack *sa);
 void	delete_head_b(t_stack *sa);
 void	delete_head_a(t_stack *sa);
 void	ft_free_init(t_stack *s);

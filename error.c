@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:18:08 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/18 15:51:25 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/20 16:25:26 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ int	ft_check_num(char **numbers)
 		return (0);
 	while (numbers[i])
 	{
-		if (!ft_digit(numbers[i]) || (!ft_atoi(numbers[i]) && \
-		numbers[i][0] != 48))
+		if (!ft_digit(numbers[i]) || ((!ft_atoi(numbers[i]) && \
+		ft_strncmp(numbers[i], "-0", 2) && ft_strncmp(numbers[i], "+0", 2)) \
+		&& ft_strncmp(numbers[i], "0", 1)))
 			return (0);
 		i++;
 	}

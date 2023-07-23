@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:16:18 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/19 22:58:17 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/20 13:43:45 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,60 +53,56 @@ void	ss(t_stack *sa)
 
 void	pa(t_stack *sa)
 {
-	t_list	*last;
 	t_list	*new;
 
-	if (!sa->b_size)
-		return ;
-	if (!sa->a_size)
+	if (sa->b_size)
 	{
-		new = (t_list *)malloc(sizeof(t_list));
-		new->data = sa->head_b->data;
-		new->next = new;
-		new->pre = new;
-		sa->head_a = new;
-		sa->head_a++;
+		if (!sa->a_size)
+		{
+			sa->head_a = (t_list *)malloc(sizeof(t_list));
+			sa->head_a->data = sa->head_b->data;
+			sa->head_a->next = sa->head_a;
+			sa->head_a->pre = sa->head_a;
+		}
+		else
+		{
+			new = (t_list *)malloc(sizeof(t_list));
+			new->data = sa->head_b->data;
+			new->next = sa->head_a;
+			new->pre = sa->head_a->pre;
+			sa->head_a->pre->next = new;
+			sa->head_a->pre = new;
+			sa->head_a = new;
+		}
+		sa->a_size++;
 		delete_head_b(sa);
-		return ;
 	}
-	new = (t_list *)malloc(sizeof(t_list));
-	new->data = sa->head_b->data;
-	last = sa->head_a->pre;
-	new->next = sa->head_a;
-	new->pre = last;
-	last->next = new;
-	sa->head_a->pre = new;
-	sa->head_a = new;
-	sa->a_size++;
-	delete_head_b(sa);
 }
 
 void	pb(t_stack *sa)
 {
-	t_list	*last;
 	t_list	*new;
 
-	if (!sa->a_size)
-		return ;
-	if (!sa->b_size)
+	if (sa->a_size)
 	{
-		new = (t_list *)malloc(sizeof(t_list));
-		new->data = sa->head_a->data;
-		new->next = new;
-		new->pre = new;
-		sa->head_b = new;
+		if (!sa->b_size)
+		{
+			sa->head_b = (t_list *)malloc(sizeof(t_list));
+			sa->head_b->data = sa->head_a->data;
+			sa->head_b->next = sa->head_b;
+			sa->head_b->pre = sa->head_b;
+		}
+		else
+		{
+			new = (t_list *)malloc(sizeof(t_list));
+			new->data = sa->head_a->data;
+			new->next = sa->head_b;
+			new->pre = sa->head_b->pre;
+			sa->head_b->pre->next = new;
+			sa->head_b->pre = new;
+			sa->head_b = new;
+		}
 		sa->b_size++;
 		delete_head_a(sa);
-		return ;
 	}
-	new = (t_list *)malloc(sizeof(t_list));
-	new->data = sa->head_a->data;
-	last = sa->head_b->pre;
-	new->next = sa->head_b;
-	new->pre = last;
-	last->next = new;
-	sa->head_b->pre = new;
-	sa->head_b = new;
-	sa->b_size++;
-	delete_head_a(sa);
 }

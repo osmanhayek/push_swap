@@ -6,7 +6,7 @@
 /*   By: ohayek <ohayek@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:33:02 by ohayek            #+#    #+#             */
-/*   Updated: 2023/07/19 14:26:48 by ohayek           ###   ########.fr       */
+/*   Updated: 2023/07/20 13:38:42 by ohayek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,6 @@ void	delete_head_b(t_stack *sa)
 	sa->b_size--;
 	free(temp);
 	write(1, "pa\n", 3);
-}
-
-void	display(t_stack *sa)
-{
-	t_list	*last;
-
-	last = sa->head_a;
-	while (1)
-	{
-		printf("%d ", last->data);
-		fflush(stdout);
-		last = last->next;
-		if (last == sa->head_a)
-			break ;
-	}
 }
 
 int	ft_is_sorted(t_stack *s)
