@@ -68,16 +68,16 @@ OBJS_BONUS = $(BSRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar $(ARFLAGS) $(NAME) $(OBJS)
+	@ar $(ARFLAGS) $(NAME) $(OBJS)
 
 %.o: %.c $(INC)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	@$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 bonus: $(OBJS) $(OBJS_BONUS)
 	ar $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_BONUS)
